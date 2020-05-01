@@ -5,5 +5,26 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="3" *ngFor="let menu of menuList">
+        <ion-card>
+          <ion-img [src]="menu.image"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle class="ion-text-right">
+              <h3>${{ menu.price.usd }}</h3>
+            </ion-card-subtitle>
+            <ion-card-title>{{ menu.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p [innerHTML]="menu.description"></p>
+          </ion-card-content>
+          <ion-item lines="none" class="btn-add-to-cart">
+            <ion-button fill="clear" slot="end">Add to Cart</ion-button>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

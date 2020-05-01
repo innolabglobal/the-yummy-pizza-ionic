@@ -1,0 +1,13 @@
+ion-card {
+  height: 100%;
+
+  ion-card-content {
+    padding-bottom: 50px;
+  }
+
+  .btn-add-to-cart {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
