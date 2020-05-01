@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "the-yummy-pizza-ionic",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
