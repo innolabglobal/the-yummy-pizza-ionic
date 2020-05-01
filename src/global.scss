@@ -24,3 +24,21 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.desktop-wrapper {
+  ion-toolbar {
+    text-align: center;
+  }
+
+  ion-header {
+    display: none;
+
+    &.header-md:after {
+      background: none;
+    }
+
+    &.header-md:after {
+      background: none;
+    }
+  }
+}
