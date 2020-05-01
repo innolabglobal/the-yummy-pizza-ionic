@@ -11,19 +11,19 @@ export class TabsPage {
   isDesktop: boolean;
   tabs = [
     {
-      tab: 'tab1',
-      icon: 'flash',
-      label: 'Tab 1',
+      tab: 'home',
+      icon: 'home',
+      label: 'Home',
     },
     {
-      tab: 'tab2',
-      icon: 'flash',
-      label: 'Tab 2',
+      tab: 'menu',
+      icon: 'list',
+      label: 'Menu',
     },
     {
-      tab: 'tab3',
-      icon: 'flash',
-      label: 'Tab 3',
+      tab: 'about',
+      icon: 'information-circle',
+      label: 'About',
     },
   ];
 
