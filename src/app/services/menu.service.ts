@@ -83,6 +83,14 @@ export class MenuService {
 
   constructor() { }
 
+  getMenu(id: number) {
+    const result = DUMMY_MENU.filter(item => item.id === id);
+
+    console.log(result);
+
+    return of(result.length ? result[0] : {});
+  }
+
   getAllMenu() {
     return of(DUMMY_MENU);
   }
