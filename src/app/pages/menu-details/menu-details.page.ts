@@ -34,10 +34,10 @@ export class MenuDetailsPage implements OnInit, OnViewWillEnter {
               public alertCtrl: AlertController,
               public cartService: CartService,
               public menuService: MenuService) {
+    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 10);
   }
 
   ionViewWillEnter() {
-    this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 10);
     this.cartService.getCart();
     this.savedCart = this.cartService.cart;
   }
