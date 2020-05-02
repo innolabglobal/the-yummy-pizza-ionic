@@ -13,7 +13,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size-md="3" *ngFor="let menu of menuList">
+      <ion-col size-md="3" *ngFor="let menu of menuList" [routerLink]="['menu-details', menu.id]">
         <ion-card>
           <ion-img [src]="menu.image"></ion-img>
           <ion-card-header>

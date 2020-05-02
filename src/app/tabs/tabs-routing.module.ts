@@ -13,7 +13,16 @@ const routes: Routes = [
       },
       {
         path: 'menu',
-        loadChildren: () => import('../pages/menu/menu.module').then( m => m.MenuPageModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../pages/menu/menu.module').then( m => m.MenuPageModule)
+          },
+          {
+            path: 'menu-details',
+            loadChildren: () => import('../pages/menu-details/menu-details.module').then( m => m.MenuDetailsPageModule)
+          }
+        ]
       },
       {
         path: 'about',

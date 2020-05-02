@@ -1,0 +1,41 @@
+ion-grid {
+  min-height: 100%;
+
+  > ion-row {
+    height: 100%;
+  }
+}
+
+.btn-group {
+  margin-left: 2px;
+
+  ion-col {
+    &:first-of-type {
+      ion-button { margin-right: 0; }
+    }
+
+    &:last-of-type {
+      ion-button { margin-left: 0; }
+    }
+
+    &:not(first-of-type), &:not(last-of-type) {
+      ion-button {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+ion-list {
+  margin: 0 2px;
+
+  ion-list-header {
+    background: var(--ion-color-warning);
+    color: #ffff;
+
+    ion-label {
+      margin-top: 6px;
+    }
+  }
+}
