@@ -13,7 +13,7 @@ export class MenuPage implements OnInit {
   constructor(private menuService: MenuService) { }
 
   ngOnInit() {
-    this.menuService.getAll().subscribe(res => this.menuList = res);
+    this.menuService.getAllMenu().subscribe(res => this.menuList = res);
   }
 
 }

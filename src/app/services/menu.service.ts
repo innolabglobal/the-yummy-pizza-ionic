@@ -83,7 +83,7 @@ export class MenuService {
 
   constructor() { }
 
-  getAll() {
+  getAllMenu() {
     return of(DUMMY_MENU);
   }
 }
