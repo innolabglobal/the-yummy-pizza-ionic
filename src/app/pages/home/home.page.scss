@@ -1,0 +1,12 @@
+ion-slides {
+  height: 100%;
+
+  ion-slide {
+    flex-direction: column;
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+    }
+  }
+}
