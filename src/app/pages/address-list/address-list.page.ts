@@ -4,6 +4,7 @@ import { AddressService } from '../../services/address.service';
 import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-address-list',
@@ -22,6 +23,7 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
   constructor(public activatedRoute: ActivatedRoute,
               public addressService: AddressService,
               public alertCtrl: AlertController,
+              public authService: AuthService,
               public cartService: CartService,
               public navCtrl: NavController) {
     this.addressService.getDeliverablePostcode().subscribe(
@@ -37,7 +39,11 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
   ionViewWillEnter() {
     this.orderDetails = { ...this.activatedRoute.snapshot.queryParams };
 
-    this.addressService.getAddressList().subscribe(res => this.addressList = res);
+    if (this.authService.isLoggedIn()) {
+      this.addressService.getAddressList().subscribe(res => this.addressList = res);
+    } else {
+      this.addressService.getAllLocalAddresses().then(res => this.addressList = res);
+    }
 
     if (this.orderDetails.grandTotal === undefined) {
       this.navCtrl.navigateBack('/tabs/cart');
