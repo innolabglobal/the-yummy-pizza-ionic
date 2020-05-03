@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/address-list"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Add Your Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form (ngSubmit)="addAddress()" #f="ngForm" class="ion-padding">
+      <ion-item>
+        <ion-input type="text" placeholder="Name *" name="name" id="name"
+                   [(ngModel)]="address.name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="City *" name="city" id="city"
+                   [(ngModel)]="address.city" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Postcode *" name="postcode" id="postcode"
+                   [(ngModel)]="address.postcode" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" name="area" id="area" placeholder="Area / Locality"
+                   [(ngModel)]="address.area"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Mobile *" name="mobileNo" id="mobileNo"
+                   [(ngModel)]="address.mobileNo" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea rows="6" placeholder="Address *" name="address" id="address"
+                      [(ngModel)]="address.address" required></ion-textarea>
+      </ion-item>
+
+      <ion-button class="ion-margin" type="Submit" expand="block" [disabled]="!f.valid">
+        <ion-icon name="add" slot="start"></ion-icon>
+        Add Address
+      </ion-button>
+
+    </form>
+  </ion-list>
+</ion-content>
