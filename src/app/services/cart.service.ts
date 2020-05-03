@@ -27,6 +27,10 @@ export class CartService {
     }
   }
 
+  clearCart() {
+    localStorage.removeItem(KEY_CART);
+  }
+
   getCart() {
     this.cart = JSON.parse(localStorage.getItem(KEY_CART));
   }
