@@ -32,7 +32,7 @@ export class CartService {
   }
 
   getCart() {
-    this.cart = JSON.parse(localStorage.getItem(KEY_CART));
+    this.cart = JSON.parse(localStorage.getItem(KEY_CART)) || [];
   }
 
   recalculateTotalPrice(data) {
