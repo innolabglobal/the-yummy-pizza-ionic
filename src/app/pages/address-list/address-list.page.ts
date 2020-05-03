@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { AddressService } from '../../services/address.service';
-import { OnViewWillEnter } from '../../models/ion-lifecycle';
+import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 

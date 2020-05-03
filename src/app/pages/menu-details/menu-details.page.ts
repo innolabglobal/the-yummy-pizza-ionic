@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { CartService } from '../../services/cart.service';
 import { MenuService } from '../../services/menu.service';
 import { ActivatedRoute } from '@angular/router';
-import { OnViewWillEnter } from '../../models/ion-lifecycle';
+import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 
 @Component({
   selector: 'app-menu-details',

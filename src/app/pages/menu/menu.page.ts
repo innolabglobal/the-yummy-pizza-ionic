@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
-import { OnViewWillEnter } from '../../models/ion-lifecycle';
+import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 import { CartService } from '../../services/cart.service';
 
 @Component({

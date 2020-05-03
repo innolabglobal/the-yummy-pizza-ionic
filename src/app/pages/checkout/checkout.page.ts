@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
-import { OnViewWillEnter } from '../../models/ion-lifecycle';
+import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CheckoutService } from '../../services/checkout.service';
 import { CartService } from '../../services/cart.service';
