@@ -8,7 +8,7 @@ const DUMMY_ADDRESS_LIST = [
     city: 'Witzhave',
     mobileNo: '02532753469',
     name: 'Parent Home',
-    postcode: '48346'
+    postcode: '48345'
   },
   {
     address: '1058  Mapleview Drive',
@@ -24,7 +24,7 @@ const DUMMY_ADDRESS_LIST = [
     city: 'Ostbevern',
     mobileNo: '02532753469',
     name: 'Work',
-    postcode: '48346'
+    postcode: '48344'
   }
 ];
 
