@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/menu"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!isCart()">
+    <ion-row>
+      <ion-icon class="empty-cart" name="cart"></ion-icon>
+    </ion-row>
+    <h4>Your Cart is empty!</h4>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="6">
+        <ion-button expand="block" routerLink="/tabs/menu">
+          Add Items
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="isCart()" class="desktop-container">
+
+    <ion-list class="cart-list" *ngFor="let data of Cart" lines="full">
+      <ion-item class="cart-item">
+        <ion-row class="full" style="width: 100%">
+          <ion-col size="12">
+            <ion-row>
+              <ion-col size="4" class="ion-align-self-center">
+                <ion-img [src]="data.item?.image" [alt]="data.item?.name"></ion-img>
+              </ion-col>
+              <ion-col size="8">
+                <p class="item-name ion-text-wrap">{{ data.item.title }}</p>
+                <p class="item-detail ion-text-wrap">Quantity: {{ data.item.itemQuantity }}</p>
+                <p class="item-detail ion-text-wrap">Size: {{ data?.item?.price?.priceName }}</p>
+                <p class="item-detail">Price:
+                  <span class="item-price"> $ {{ data.item.price.value | number:'.2-2' }}</span>
+                </p>
+
+                <ion-row class="counter">
+                  <ion-col size="8" class="ion-align-self-center" style="padding-left: 0">
+                    <div class="count">
+                      <span class="item-count" (click)="remove(data)">-</span>
+                      <span class="item-count show-count">{{ data.item.itemQuantity }}</span>
+                      <span class="item-count" (click)="add(data)">+</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size="4">
+                    <ion-button fill="clear" color="danger" (click)="deleteItem(data)">
+                      <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+
+    <ion-row class="price-details ion-padding">
+      <ion-col class="calculate" size="12">
+        <p class="bill-detail">
+          Price Subtotal
+          <span>$ {{ subTotal | number:'.2-2' }}</span>
+        </p>
+
+        <p class="bill-detail">
+          Total VAT({{ settings.totalVat  }}%)
+          <span>$ {{ total }}</span>
+        </p>
+
+        <hr>
+
+        <div class="cart-total">
+          <strong>Order Total</strong>
+          <span class="price"> $ {{ GrandTotal | number:'.2-2' }}</span>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-horizontal">
+      <ion-col size="12">
+        <ion-button expand="block" (click)="onCheckoutBtnClicked()">Checkout Now</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+</ion-content>
