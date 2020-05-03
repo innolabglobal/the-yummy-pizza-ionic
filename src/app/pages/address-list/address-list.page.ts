@@ -40,7 +40,7 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
     this.addressService.getAddressList().subscribe(res => this.addressList = res);
 
     if (this.orderDetails.grandTotal === undefined) {
-      this.navCtrl.navigateBack('/cart');
+      this.navCtrl.navigateBack('/tabs/cart');
     }
   }
 
