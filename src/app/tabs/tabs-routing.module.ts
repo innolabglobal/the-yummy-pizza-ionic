@@ -33,6 +33,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/cart/cart.module').then( m => m.CartPageModule)
       },
       {
+        path: 'address-list',
+        loadChildren: () => import('../pages/address-list/address-list.module').then( m => m.AddressListPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'

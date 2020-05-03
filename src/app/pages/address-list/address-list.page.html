@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/cart"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Your Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="desktop-container">
+    <ion-list lines="full">
+      <ion-item routerLink="/tabs/address-form" detail="false">
+        <ion-icon slot="end" name="add"></ion-icon>
+        <ion-label>Add New Address</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list lines="full">
+      <ion-radio-group (ionChange)="selectAddress($event)">
+        <ion-item *ngFor="let address of addressList">
+          <ion-label>
+            <p class="show-address">{{address.name}} </p>
+            <p class="show-address">{{address.address}}</p>
+            <p class="show-address">{{address.city}}</p>
+            <p class="show-address">{{address.postcode}}</p>
+          </ion-label>
+          <ion-radio slot="end" color="primary" [value]="address"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-button expand="block" (click)="checkOut()" class="ion-margin-top">
+      <ion-icon name="arrow-forward" slot="end"></ion-icon>
+      Continue
+    </ion-button>
+
+  </div>
+</ion-content>
