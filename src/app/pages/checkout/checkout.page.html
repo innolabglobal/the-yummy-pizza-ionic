@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/address-list"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="desktop-container">
+    <ion-list lines="full">
+      <ion-radio-group (ionChange)="choosePaymentType($event)">
+        <ion-list-header>
+          <ion-label>Payment Options</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let payment of paymentTypes">
+          <ion-label>{{ payment.type }}</ion-label>
+          <ion-radio slot="start" color="primary" [value]="payment.type"></ion-radio>
+          <ion-thumbnail slot="end">
+            <ion-img *ngIf="payment.logo" [src]="payment.logo"></ion-img>
+          </ion-thumbnail>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-button class="ion-margin" expand="block"
+                [disabled]="!paymentType"
+                (click)="onCheckOut()">
+      Pay Now
+    </ion-button>
+  </div>
+</ion-content>

@@ -37,6 +37,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/address-list/address-list.module').then( m => m.AddressListPageModule)
       },
       {
+        path: 'checkout',
+        loadChildren: () => import('../pages/checkout/checkout.module').then( m => m.CheckoutPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
