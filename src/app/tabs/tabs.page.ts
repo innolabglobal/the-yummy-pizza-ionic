@@ -20,11 +20,11 @@ export class TabsPage {
       icon: 'list',
       label: 'Menu',
     },
-    {
-      tab: 'about',
-      icon: 'information-circle',
-      label: 'About',
-    },
+    // {
+    //   tab: 'about',
+    //   icon: 'information-circle',
+    //   label: 'About',
+    // },
   ];
 
   constructor(private screensizeService: ScreensizeService) {
