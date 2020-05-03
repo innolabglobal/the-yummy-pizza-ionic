@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title>Home</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/tabs/cart" class="badge-counter">
+        <ion-badge color="danger" *ngIf="savedCart?.length">{{ savedCart?.length }}</ion-badge>
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

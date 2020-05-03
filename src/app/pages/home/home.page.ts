@@ -1,4 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 
 const SLIDES = [
   {
@@ -28,8 +30,9 @@ const SLIDES = [
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, OnViewWillEnter {
 
+  savedCart = [];
   sliderOptions = {
     speed: 400,
     loop: true,
@@ -39,12 +42,19 @@ export class HomePage implements OnInit {
   };
   slides = SLIDES;
 
-  constructor(public renderer: Renderer2) { }
+  constructor(public cartService: CartService,
+              public renderer: Renderer2) { }
 
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.cartService.getCart();
+    this.savedCart = this.cartService.cart;
+  }
+
   setBackgroundImage(slide, elem) {
-    this.renderer.setStyle(elem.el, 'background', `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${slide.image})`);
+    this.renderer.setStyle(elem.el, 'background',
+      `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${slide.image})`);
   }
 }
