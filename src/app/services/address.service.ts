@@ -43,6 +43,8 @@ const DUMMY_DELIVERABLE_POSTCODE = [
   { postcode: 67895 },
 ];
 
+const LOCAL_ADDRESS_STORAGE_KEY = 'LOCAL_ADDRESS';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -56,5 +58,21 @@ export class AddressService {
 
   getDeliverablePostcode() {
     return of(DUMMY_DELIVERABLE_POSTCODE);
+  }
+
+  async addLocalAddress(address) {
+    return this.getAllLocalAddresses().then(async (result) => {
+      if (result) {
+        result.push(address);
+        return localStorage.setItem(LOCAL_ADDRESS_STORAGE_KEY, JSON.stringify(result));
+      } else {
+        return localStorage.setItem(LOCAL_ADDRESS_STORAGE_KEY, JSON.stringify([address]));
+      }
+    });
+  }
+
+  async getAllLocalAddresses() {
+    const result = JSON.parse(localStorage.getItem(LOCAL_ADDRESS_STORAGE_KEY));
+    return result ? result : [];
   }
 }
