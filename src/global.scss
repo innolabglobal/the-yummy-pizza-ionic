@@ -36,9 +36,17 @@
     &.header-md:after {
       background: none;
     }
+  }
+}
 
-    &.header-md:after {
-      background: none;
-    }
+ion-button.badge-counter {
+  --overflow: visible;
+
+  ion-badge {
+    position: absolute;
+    opacity: 0.9;
+    top: 0;
+    left: -0.5rem;
+    z-index: 99;
   }
 }
