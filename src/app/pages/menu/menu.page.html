@@ -3,7 +3,7 @@
     <ion-title>Menu</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/tabs/cart" class="badge-counter">
-        <ion-badge color="danger">{{ savedCart.length }}</ion-badge>
+        <ion-badge color="danger" *ngIf="savedCart?.length">{{ savedCart?.length }}</ion-badge>
         <ion-icon name="cart"></ion-icon>
       </ion-button>
     </ion-buttons>
