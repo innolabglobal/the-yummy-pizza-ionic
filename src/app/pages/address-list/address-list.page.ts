@@ -53,11 +53,11 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
       shippingAddress: address
     };
 
-    for (let i = 0; i < this.postcodes.length; i++) {
-      if (this.postcodes[i].postcode === Number(address.postcode)) {
+    this.postcodes.forEach(item => {
+      if (item.postcode === Number(address.postcode)) {
         this.postcodeMatched = true;
       }
-    }
+    });
   }
 
   async checkOut() {
@@ -65,7 +65,7 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
 
     if (this.orderDetails.shippingAddress && this.postcodeMatched) {
       await this.navCtrl.navigateForward('/tabs/checkout', { queryParams: this.orderDetails });
-    } else if (this.postcodeMatched === false) {
+    } else if (this.orderDetails.shippingAddress && this.postcodeMatched === false) {
       await this.showAlert('We can not deliver to this area yet. Stay tuned!');
     } else {
       await this.showAlert('Please select your address to proceed.');
