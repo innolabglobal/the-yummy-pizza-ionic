@@ -92,7 +92,7 @@ export class CartService {
 
       for (let i = 0; i < this.cart.length; i++) {
         if (this.cart[i].item.itemId === item.itemId &&
-          this.cart[i].item.price.priceName === item.price.priceName) {
+          this.cart[i].item.price.name === item.price.name) {
           this.cart.splice(i, 1);
         }
       }

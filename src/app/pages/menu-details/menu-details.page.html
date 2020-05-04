@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/menu"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ menuItem.name }}</ion-title>
+    <ion-title>{{ menuItem?.name }}</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/tabs/cart" class="badge-counter">
         <ion-badge color="danger" *ngIf="savedCart?.length">{{ savedCart?.length }}</ion-badge>
@@ -22,8 +22,8 @@
       </ion-col>
       <ion-col size="12" size-md="4" class="ion-justify-content-center ion-align-self-center ion-padding">
         <ion-row>
-          <h2 class="ion-no-margin">{{ menuItem.name }}</h2>
-          <p [innerHTML]="menuItem.description"></p>
+          <h2 class="ion-no-margin">{{ menuItem?.name }}</h2>
+          <p [innerHTML]="menuItem?.description"></p>
         </ion-row>
 
         <ion-row>
@@ -59,8 +59,8 @@
             <ion-list-header>
               <ion-label>Size and prices</ion-label>
             </ion-list-header>
-            <ion-item *ngFor="let item of menuItem.priceOption; let i= index">
-              <ion-label>{{ item.priceName }} - ${{ item.priceValue }}</ion-label>
+            <ion-item *ngFor="let item of menuItem?.price_option; let i= index">
+              <ion-label class="ion-text-capitalize">{{ item?.name }} - ${{ item?.value }}</ion-label>
               <ion-radio slot="end" color="primary" [value]="item"></ion-radio>
             </ion-item>
           </ion-radio-group>

@@ -68,7 +68,7 @@ export class MenuDetailsPage implements OnInit, OnViewWillEnter {
   sizeOptions(event) {
     const price = event.detail.value;
     this.cart.price = price;
-    this.cart.price.value = Number(price.priceValue);
+    this.cart.price.value = Number(price.value);
   }
 
   async addToCart() {
