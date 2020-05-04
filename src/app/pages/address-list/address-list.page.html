@@ -10,7 +10,7 @@
 <ion-content class="ion-padding">
   <div class="desktop-container">
     <ion-list lines="full">
-      <ion-item routerLink="/tabs/address-form" detail="false">
+      <ion-item routerLink="/tabs/address-form" [queryParams]="orderDetails" detail="false">
         <ion-icon slot="end" name="add"></ion-icon>
         <ion-label>Add New Address</ion-label>
       </ion-item>
