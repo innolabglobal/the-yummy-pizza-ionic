@@ -11,10 +11,10 @@ export class MenuService {
   constructor(public http: HttpClient) { }
 
   getMenu(id: number) {
-    return this.http.get(`${environment.apiBaseUrl}/menus/${id}`).pipe(map(res => res.data));
+    return this.http.get(`${environment.apiBaseUrl}/api/menus/${id}`).pipe(map(res => res.data));
   }
 
   getAllMenu() {
-    return this.http.get(`${environment.apiBaseUrl}/menus`).pipe(map(res => res.data));
+    return this.http.get(`${environment.apiBaseUrl}/api/menus`).pipe(map(res => res.data));
   }
 }
