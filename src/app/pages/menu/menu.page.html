@@ -17,7 +17,7 @@
         <ion-card>
           <ion-img [src]="menu.image"></ion-img>
           <ion-card-header>
-            <ion-card-title>{{ menu.name }}</ion-card-title>
+            <ion-card-title [innerHTML]="menu.name"></ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p [innerHTML]="menu.description"></p>
