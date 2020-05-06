@@ -3,29 +3,44 @@ import { of } from 'rxjs';
 
 const DUMMY_ADDRESS_LIST = [
   {
+    id: 1,
+    user_id: 3,
     address: 'Knesebeckstraße 75',
     area: 'Schleswig-Holstein',
     city: 'Witzhave',
-    mobileNo: '02532753469',
+    country: 'Germany',
+    phone_number: '02532753469',
     name: 'Parent Home',
-    postcode: '48345'
+    post_code: '48345',
+    first_name: 'Nick',
+    last_name: 'Fury'
   },
   {
+    id: 2,
+    user_id: 3,
     address: '1058  Mapleview Drive',
     area: 'Schleswig-Holstein',
     city: 'Münsterappel',
-    mobileNo: '02532753469',
+    country: 'Germany',
+    phone_number: '02532753469',
     name: 'Home',
-    postcode: '48346'
+    post_code: '48346',
+    first_name: 'Peter',
+    last_name: 'Parker'
   },
   {
+    id: 3,
+    user_id: 3,
     address: '4535  Larry Street',
     area: 'Schleswig-Holstein',
     city: 'Ostbevern',
-    mobileNo: '02532753469',
+    country: 'Germany',
+    phone_number: '02532753469',
     name: 'Work',
-    postcode: '48344'
-  }
+    post_code: '48344',
+    first_name: 'Sharon',
+    last_name: 'Carter'
+  },
 ];
 
 const DUMMY_DELIVERABLE_POSTCODE = [
