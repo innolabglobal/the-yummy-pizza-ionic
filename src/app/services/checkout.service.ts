@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 const DUMMY_PAYMENT_TYPES = [
   {
@@ -27,9 +29,13 @@ const DUMMY_PAYMENT_TYPES = [
 })
 export class CheckoutService {
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
   getPaymentTypes() {
     return of(DUMMY_PAYMENT_TYPES);
+  }
+
+  checkout(body) {
+    return this.http.post(`${environment.apiBaseUrl}/api/place-orders`, body);
   }
 }
