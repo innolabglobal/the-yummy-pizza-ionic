@@ -20,10 +20,12 @@
       <ion-radio-group (ionChange)="selectAddress($event)">
         <ion-item *ngFor="let address of addressList">
           <ion-label>
-            <p class="show-address">{{address.name}} </p>
+            <p class="show-address"><b>{{address.name}}</b></p>
+            <p class="show-address">{{address.first_name}} {{address.last_name}}</p>
+            <p class="show-address">[{{address.phone_number}}]</p>
             <p class="show-address">{{address.address}}</p>
             <p class="show-address">{{address.city}}</p>
-            <p class="show-address">{{address.postcode}}</p>
+            <p class="show-address">{{address.post_code}}</p>
           </ion-label>
           <ion-radio slot="end" color="primary" [value]="address"></ion-radio>
         </ion-item>

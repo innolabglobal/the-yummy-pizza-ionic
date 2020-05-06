@@ -5,6 +5,7 @@ import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
+import { AddressInterface } from '../../interfaces/address.interface';
 
 @Component({
   selector: 'app-address-list',
@@ -13,11 +14,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AddressListPage implements OnInit, OnViewWillEnter {
 
-  addressList: any = [];
+  addressList: AddressInterface[] = [];
   cart: Array<any>;
   grandTotal: any;
   orderDetails: any = {};
-  postcodes: Array<any>;
+  deliverablePostcodes: Array<any>;
   postcodeMatched = false;
 
   constructor(public activatedRoute: ActivatedRoute,
@@ -27,7 +28,7 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
               public cartService: CartService,
               public navCtrl: NavController) {
     this.addressService.getDeliverablePostcode().subscribe(
-      res => this.postcodes = res
+      res => this.deliverablePostcodes = res
     );
 
     this.cartService.getCart();
@@ -58,9 +59,10 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
       ...this.orderDetails,
       shippingAddress: address
     };
+    this.orderDetails = Object.assign(this.orderDetails, address);
 
-    this.postcodes.forEach(item => {
-      if (item.postcode === Number(address.postcode)) {
+    this.deliverablePostcodes.forEach(item => {
+      if (item.post_code === Number(address.post_code)) {
         this.postcodeMatched = true;
       }
     });
