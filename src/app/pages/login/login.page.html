@@ -3,7 +3,7 @@
 
   <img class="logo" src="assets/images/logo-v-white.svg">
 
-  <form [formGroup]="valForm" (submit)="OnLogin($event, valForm.value)">
+  <form [formGroup]="valForm" (submit)="onLoginBtnClicked($event, valForm.value)">
     <ion-row>
       <ion-col size="12">
         <ion-item>

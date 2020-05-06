@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  OnLogin($ev, value: any) {
+  onLoginBtnClicked($ev, value: any) {
     this.authService.login(value).subscribe(res => this.navCtrl.navigateRoot('/'));
   }
 }
