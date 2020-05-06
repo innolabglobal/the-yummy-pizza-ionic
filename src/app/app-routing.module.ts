@@ -12,6 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
     canLoad: [PublicGuard],
     canActivate: [PublicGuard]
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule),
+    canLoad: [PublicGuard],
+    canActivate: [PublicGuard]
   }
 ];
 @NgModule({

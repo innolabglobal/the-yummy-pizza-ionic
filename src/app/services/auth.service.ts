@@ -57,6 +57,21 @@ export class AuthService {
     return localStorage.getItem(PROFILE_STORAGE_KEY);
   }
 
+  register(credential) {
+    return this.http
+      .post(`${environment.apiBaseUrl}/api/register`, credential)
+      .pipe(
+        tap(((res: ApiResponseInterface) => {
+          localStorage.setItem(TOKEN_STORAGE_KEY, res.data.token);
+          localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify({
+            id: res.data.id,
+            name: res.data.name,
+            email: res.data.email,
+          }));
+        }))
+      );
+  }
+
   token() {
     return localStorage.getItem(TOKEN_STORAGE_KEY);
   }

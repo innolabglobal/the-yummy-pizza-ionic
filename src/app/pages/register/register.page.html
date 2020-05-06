@@ -1,0 +1,47 @@
+<ion-content class="register">
+  <ion-button color="light" fill="clear" routerLink="/" routerDirection="root">Back to Home</ion-button>
+
+  <img class="logo" src="assets/images/logo-v-white.svg">
+
+  <form [formGroup]="valForm" (submit)="onRegisterBtnClicked($event, valForm.value)">
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Name:</ion-label>
+          <ion-input type="text" name="name" placeholder="Enter your name"
+                     autocomplete="off" formControlName="name"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Email:</ion-label>
+          <ion-input type="email" name="email" placeholder="Enter your email"
+                     autocomplete="off" formControlName="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Password:</ion-label>
+          <ion-input type="password" name="password" placeholder="Enter your password"
+                     formControlName="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-button type="submit" expand="block" [disabled]="!valForm.valid">Register</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-button fill="outline" expand="block" routerLink="/login" routerDirection="root">Back to Login</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

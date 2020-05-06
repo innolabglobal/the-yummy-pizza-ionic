@@ -1,0 +1,22 @@
+.item {
+  background-color: rgba(119, 119, 119, 0.8);
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.register {
+  --background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("/assets/images/home-slider-5.jpg") no-repeat center;
+  background-size: cover;
+  color: #fff;
+
+  .logo {
+    width: 300px;
+    display: block;
+    margin: 4em auto 0;
+    padding-bottom: 3em;
+  }
+}
+
+
