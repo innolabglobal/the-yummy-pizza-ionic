@@ -66,7 +66,8 @@ export class CartPage implements OnInit, OnViewWillEnter {
           },
           {
             text: 'Checkout as Member',
-            handler: data => {
+            handler: async (data) => {
+              await this.navCtrl.navigateRoot('/login');
             }
           }
         ]
