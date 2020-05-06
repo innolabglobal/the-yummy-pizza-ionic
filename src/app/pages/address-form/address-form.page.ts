@@ -13,10 +13,12 @@ export class AddressFormPage implements OnInit, OnViewWillEnter {
 
   address = {
     name: '',
+    first_name: '',
+    last_name: '',
     city: '',
-    postcode: '',
-    area: '',
-    mobileNo: '',
+    country: 'Germany',
+    post_code: '',
+    phone_number: '',
     address: ''
   };
   orderDetails: any = {};
@@ -34,7 +36,7 @@ export class AddressFormPage implements OnInit, OnViewWillEnter {
   }
 
   async addAddress() {
-    await this.addressService.addLocalAddress(this.address);
+    await this.addressService.addAddress(this.address);
 
     const alert = await this.alertCtrl.create({
       header: 'Success',
