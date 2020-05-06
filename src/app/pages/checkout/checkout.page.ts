@@ -13,16 +13,7 @@ import { CartService } from '../../services/cart.service';
 export class CheckoutPage implements OnInit, OnViewWillEnter {
 
   order: any = {};
-  userId: any;
-  userDetails: any = {
-    email: '',
-    name: '',
-    userid: ''
-  };
   paymentType: string;
-  paymentDetails: any = {
-    paymentStatus: true
-  };
   paymentTypes = [];
 
   constructor(public activatedRoute: ActivatedRoute,
@@ -39,31 +30,48 @@ export class CheckoutPage implements OnInit, OnViewWillEnter {
     this.checkoutService.getPaymentTypes().subscribe(res => this.paymentTypes = res);
   }
 
-  choosePaymentType(paymentType) {
-    this.paymentType = paymentType;
-    this.order.paymentType = paymentType;
-    this.paymentDetails.paymentType = paymentType;
+  choosePaymentType(event) {
+    this.paymentType = event.detail.value;
   }
 
-  async onCheckOut() {
-    this.order.orderId = Math.floor(Math.random() * 90000) + 10000;
-    this.order.userDetails = this.userDetails;
-    this.order.userId = this.userId;
-    this.order.createdAt = Date.now();
+  async onCheckoutBtnClicked() {
     this.order.status = 'pending';
-    this.order.paymentStatus = 'pending';
-    delete this.order.shippingAddress.$key;
-    this.order.statusReading = [
-      {
-        title: 'Your order has been accepted.You will get notified the status here.',
-        time: Date.now()
-      }
-    ];
+    this.order.paymentStatus = 0;
+    this.cartService.getCart();
 
     if (this.paymentType === 'Braintree') {
+      this.order.paymentStatus = 1;
     } else if (this.paymentType === 'Stripe') {
+      this.order.paymentStatus = 1;
     } else {
+      this.order.paymentStatus = 0;
     }
+
+    const carts = {
+      ...this.cartService.cart.map(cartItem => {
+        return {
+          id: cartItem.item.itemId,
+          title: cartItem.item.title,
+          price: cartItem.item.price.value,
+          quantity: cartItem.item.itemQuantity,
+          price_option_id: cartItem.item.price.id
+        };
+      })
+    };
+
+    const body = {
+      first_name: this.order.first_name,
+      last_name: this.order.last_name,
+      address: this.order.address,
+      city: this.order.city,
+      country: this.order.country,
+      post_code: this.order.post_code,
+      phone_number: this.order.phone_number,
+      payment_method: this.paymentType,
+      payment_status: this.order.paymentStatus,
+      notes: this.order.notes || null,
+      carts
+    };
 
     const alert = await this.alertCtrl.create({
       header: 'Thanks!',
@@ -79,6 +87,6 @@ export class CheckoutPage implements OnInit, OnViewWillEnter {
       ],
     });
 
-    await alert.present();
+    this.checkoutService.checkout(body).subscribe(res => alert.present());
   }
 }
