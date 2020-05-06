@@ -25,6 +25,6 @@ export class LoginPage implements OnInit {
   }
 
   onLoginBtnClicked($ev, value: any) {
-    this.authService.login(value).subscribe(res => this.navCtrl.navigateRoot('/'));
+    this.authService.login(value).subscribe(res => this.navCtrl.navigateRoot('/tabs/cart'));
   }
 }
