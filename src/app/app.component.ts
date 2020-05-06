@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ScreensizeService } from "./services/screensize.service";
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +18,13 @@ export class AppComponent {
     this.screensizeService.onResize(event.target.innerWidth);
   }
 
-  constructor(private platform: Platform,
+  constructor(private authService: AuthService,
+              private platform: Platform,
               private screensizeService: ScreensizeService,
               private splashScreen: SplashScreen,
               private statusBar: StatusBar) {
     this.initializeApp();
+    this.authService.init().subscribe();
   }
 
   initializeApp() {
