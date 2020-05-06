@@ -1,6 +1,9 @@
 <ion-content class="register">
-  <ion-button color="light" fill="clear" routerLink="/" routerDirection="root">Back to Home</ion-button>
-
+  <ion-button color="light" fill="clear" routerLink="/" routerDirection="root">
+    <ion-icon name="arrow-back" slot="start"></ion-icon>
+    Back to Home
+  </ion-button>
+  
   <img class="logo" src="assets/images/logo-v-white.svg">
 
   <form [formGroup]="valForm" (submit)="onRegisterBtnClicked($event, valForm.value)">
