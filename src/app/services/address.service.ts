@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
+import { AddressInterface } from '../interfaces/address.interface';
+import { ApiResponseInterface } from '../interfaces/api-response.interface';
+import { AuthService } from './auth.service';
 
 const DUMMY_ADDRESS_LIST = [
   {
@@ -44,18 +50,18 @@ const DUMMY_ADDRESS_LIST = [
 ];
 
 const DUMMY_DELIVERABLE_POSTCODE = [
-  { postcode: 48346 },
-  { postcode: 56075 },
-  { postcode: 57401 },
-  { postcode: 57476 },
-  { postcode: 57146 },
-  { postcode: 57125 },
-  { postcode: 57480 },
-  { postcode: 57101 },
-  { postcode: 78900 },
-  { postcode: 57101 },
-  { postcode: 57475 },
-  { postcode: 67895 },
+  { post_code: 48346 },
+  { post_code: 56075 },
+  { post_code: 57401 },
+  { post_code: 57476 },
+  { post_code: 57146 },
+  { post_code: 57125 },
+  { post_code: 57480 },
+  { post_code: 57101 },
+  { post_code: 78900 },
+  { post_code: 57101 },
+  { post_code: 57475 },
+  { post_code: 67895 },
 ];
 
 const LOCAL_ADDRESS_STORAGE_KEY = 'LOCAL_ADDRESS';
@@ -65,14 +71,15 @@ const LOCAL_ADDRESS_STORAGE_KEY = 'LOCAL_ADDRESS';
 })
 export class AddressService {
 
-  constructor() { }
+  constructor(public authService: AuthService,
+              public http: HttpClient) { }
 
-  getAddressList() {
-    return of(DUMMY_ADDRESS_LIST);
-  }
-
-  getDeliverablePostcode() {
-    return of(DUMMY_DELIVERABLE_POSTCODE);
+  addAddress(address) {
+    if (this.authService.isLoggedIn()) {
+      return this.addMemberAddress(address).toPromise();
+    } else {
+      return this.addLocalAddress(address);
+    }
   }
 
   async addLocalAddress(address) {
@@ -86,8 +93,25 @@ export class AddressService {
     });
   }
 
+  addMemberAddress(body) {
+    return this.http.post(`${environment.apiBaseUrl}/api/own/addresses`, body);
+  }
+
+  getAddressList(): Observable<AddressInterface[]> {
+    return this.http
+      .get(`${environment.apiBaseUrl}/api/own/addresses`)
+      .pipe(map((res: ApiResponseInterface) => res.data));
+  }
+
   async getAllLocalAddresses() {
     const result = JSON.parse(localStorage.getItem(LOCAL_ADDRESS_STORAGE_KEY));
+    result.concat(DUMMY_ADDRESS_LIST);
+
     return result ? result : [];
   }
+
+  getDeliverablePostcode() {
+    return of(DUMMY_DELIVERABLE_POSTCODE);
+  }
+
 }
