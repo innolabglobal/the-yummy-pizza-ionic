@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/order-history"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ order?.order_number }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>Total Amount:</ion-col>
+          <ion-col><b>{{ order?.grand_total | currency }}</b></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Ordered At:</ion-col>
+          <ion-col>{{ order?.created_at | date: 'medium' }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Status:</ion-col>
+          <ion-col class="ion-text-capitalize">{{ order?.status }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Address</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>Name:</ion-col>
+          <ion-col>{{ order?.first_name }} {{ order?.last_name }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Phone Number:</ion-col>
+          <ion-col>{{ order?.phone_number }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Address:</ion-col>
+          <ion-col>{{ order?.address }}, {{ order?.city }}, <b>{{ order?.post_code }}</b></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item *ngFor="let item of order?.items" class="ion-no-padding">
+        <ion-label>
+          <h2>
+            <span [innerHTML]="item.menu.name"></span>
+            <span class="ion-text-capitalize"><i><small> ({{ item.price_option.name }})</small></i></span>
+          </h2>
+          <h3>
+            <ion-row>
+              <ion-col>Subtotal:</ion-col>
+              <ion-col><b>{{ item.price | currency}}</b></ion-col>
+              <ion-col>Quantity:</ion-col>
+              <ion-col><b>{{ item.quantity }}</b></ion-col>
+            </ion-row>
+          </h3>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
