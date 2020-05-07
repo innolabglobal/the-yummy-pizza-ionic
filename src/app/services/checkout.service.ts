@@ -36,6 +36,6 @@ export class CheckoutService {
   }
 
   checkout(body) {
-    return this.http.post(`${environment.apiBaseUrl}/api/place-orders`, body);
+    return this.http.post(`${environment.apiBaseUrl}/api/own/orders`, body);
   }
 }
