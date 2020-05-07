@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ionic serve -l -c --no-open",
+    "build:firebase:prod": "ionic build --prod && firebase deploy",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
