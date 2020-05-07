@@ -1,8 +1,8 @@
-# The Yummy Pizza
+# The Yummy Pizza Frontend Web Application
 
-The Yummy Pizza is a pizza delivery web application. 
+The Yummy Pizza is a simple pizza delivery web application built with Ionic. 
 
-# Features
+## Features
   
   - Pizza ordering system.
   - Login/Register is not necessary.
@@ -31,7 +31,7 @@ $ npm install
 $ npm start
 ```
 
-# Deploying to Firebase Hosting
+## Deploying to Firebase Hosting
 
 Using Firebase Hosting, we can deploy our application's static files (HTML, CSS, JavaScript, etc) to the web with a single command. To get started, we'll download `firebase-tools` via npm:
 
