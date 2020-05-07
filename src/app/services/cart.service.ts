@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 const KEY_CART = 'Cart';
 
@@ -8,6 +9,7 @@ const KEY_CART = 'Cart';
 export class CartService {
 
   cart: any[] = [];
+  cart$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   itemCart: any = {};
   itemInCart = [];
 
@@ -33,6 +35,7 @@ export class CartService {
 
   getCart() {
     this.cart = JSON.parse(localStorage.getItem(KEY_CART)) || [];
+    this.cart$.next(this.cart);
   }
 
   recalculateTotalPrice(data) {
