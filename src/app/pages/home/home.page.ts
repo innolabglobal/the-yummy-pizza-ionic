@@ -55,6 +55,6 @@ export class HomePage implements OnInit, OnViewWillEnter {
 
   setBackgroundImage(slide, elem) {
     this.renderer.setStyle(elem.el, 'background',
-      `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${slide.image})`);
+      `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${slide.image}) center/cover no-repeat`);
   }
 }
