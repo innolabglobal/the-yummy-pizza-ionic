@@ -46,10 +46,7 @@ export class AuthService {
     return this.http
       .post(`${environment.apiBaseUrl}/api/logout`, {})
       .pipe(
-        tap(((res: ApiResponseInterface) => {
-          localStorage.removeItem(TOKEN_STORAGE_KEY);
-          localStorage.removeItem(PROFILE_STORAGE_KEY);
-        }))
+        tap(((res: ApiResponseInterface) => this.removeLocalStorage()))
       );
   }
 
@@ -70,6 +67,11 @@ export class AuthService {
           }));
         }))
       );
+  }
+
+  removeLocalStorage() {
+    localStorage.removeItem(TOKEN_STORAGE_KEY);
+    localStorage.removeItem(PROFILE_STORAGE_KEY);
   }
 
   token() {
