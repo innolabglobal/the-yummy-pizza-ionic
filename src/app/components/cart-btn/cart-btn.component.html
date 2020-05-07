@@ -1,4 +1,4 @@
 <ion-button fill="clear" routerLink="/tabs/cart" routerDirection="root" class="badge-counter">
-  <ion-badge color="danger" *ngIf="savedCart?.length">{{ (savedCart$ | async )?.length }}</ion-badge>
+  <ion-badge color="danger" *ngIf="(savedCart$ | async )?.length">{{ (savedCart$ | async )?.length }}</ion-badge>
   <ion-icon name="cart"></ion-icon>
 </ion-button>
