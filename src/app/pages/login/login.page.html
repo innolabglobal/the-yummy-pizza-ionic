@@ -4,44 +4,48 @@
     Back to Home
   </ion-button>
 
-  <img class="logo" src="assets/images/logo-v-white.svg">
+  <div class="desktop-container">
 
-  <form [formGroup]="valForm" (submit)="onLoginBtnClicked($event, valForm.value)">
+    <img class="logo" src="assets/images/logo-v-white.svg">
+
+    <form [formGroup]="valForm" (submit)="onLoginBtnClicked($event, valForm.value)">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Email:</ion-label>
+            <ion-input type="email" name="email" placeholder="Enter email"
+                       autocomplete="off" formControlName="email"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label>Password:</ion-label>
+            <ion-input type="password" name="password" placeholder="Password"
+                       formControlName="password"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!--      TODO: to be added -->
+      <!--      <ion-row>-->
+      <!--        <ion-col size="12">-->
+      <!--          <ion-button fill="clear" expand="block" color="danger">Forgot Password?</ion-button>-->
+      <!--        </ion-col>-->
+      <!--      </ion-row>-->
+
+      <ion-row class="ion-padding-top">
+        <ion-col size="12">
+          <ion-button type="submit" expand="block" [disabled]="!valForm.valid">Login</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
     <ion-row>
       <ion-col size="12">
-        <ion-item>
-          <ion-label>Email:</ion-label>
-          <ion-input type="email" name="email" placeholder="Enter email"
-                     autocomplete="off" formControlName="email"></ion-input>
-        </ion-item>
+        <ion-button fill="outline" expand="block" routerLink="/register" routerDirection="root">Go to Register</ion-button>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label>Password:</ion-label>
-          <ion-input type="password" name="password" placeholder="Password"
-                     formControlName="password"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <ion-button fill="clear" expand="block" color="danger">Forgot Password?</ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <ion-button type="submit" expand="block" [disabled]="!valForm.valid">Login</ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
-
-  <ion-row>
-    <ion-col size="12">
-      <ion-button fill="outline" expand="block" routerLink="/register" routerDirection="root">Register</ion-button>
-    </ion-col>
-  </ion-row>
+  </div>
 </ion-content>

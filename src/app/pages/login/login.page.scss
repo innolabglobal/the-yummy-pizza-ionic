@@ -19,4 +19,9 @@
   }
 }
 
-
+@media (min-width: 768px) {
+  ion-content > .desktop-container {
+    width: 50vw;
+    margin: auto;
+  }
+}
