@@ -5,6 +5,7 @@
     </ion-buttons>
     <ion-title>{{ menuItem?.name }}</ion-title>
     <ion-buttons slot="end">
+      <app-currency-btn></app-currency-btn>
       <ion-button routerLink="/tabs/cart" class="badge-counter">
         <ion-badge color="danger" *ngIf="savedCart?.length">{{ savedCart?.length }}</ion-badge>
         <ion-icon name="cart"></ion-icon>
@@ -60,7 +61,7 @@
               <ion-label>Size and prices</ion-label>
             </ion-list-header>
             <ion-item *ngFor="let item of menuItem?.price_option; let i= index">
-              <ion-label class="ion-text-capitalize">{{ item?.name }} - ${{ item?.value }}</ion-label>
+              <ion-label class="ion-text-capitalize">{{ item?.name }} - {{ item?.value | currencyConverter: (selectedCurrency$ | async) }}</ion-label>
               <ion-radio slot="end" color="primary" [value]="item"></ion-radio>
             </ion-item>
           </ion-radio-group>

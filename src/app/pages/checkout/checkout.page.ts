@@ -4,6 +4,8 @@ import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CheckoutService } from '../../services/checkout.service';
 import { CartService } from '../../services/cart.service';
+import { CurrencyService } from '../../services/currency.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -15,10 +17,12 @@ export class CheckoutPage implements OnInit, OnViewWillEnter {
   order: any = {};
   paymentType: string;
   paymentTypes = [];
+  selectedCurrency$: Observable<string>;
 
   constructor(public activatedRoute: ActivatedRoute,
               public alertCtrl: AlertController,
               public cartService: CartService,
+              public currencyService: CurrencyService,
               public navCtrl: NavController,
               private checkoutService: CheckoutService) {
     this.order = { ...this.activatedRoute.snapshot.queryParams };
@@ -27,6 +31,7 @@ export class CheckoutPage implements OnInit, OnViewWillEnter {
   ngOnInit(): void {}
 
   ionViewWillEnter() {
+    this.selectedCurrency$ = this.currencyService.selectedCurrency$;
     this.checkoutService.getPaymentTypes().subscribe(res => this.paymentTypes = res);
   }
 

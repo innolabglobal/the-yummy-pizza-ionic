@@ -4,6 +4,8 @@ import { CartService } from '../../services/cart.service';
 import { MenuService } from '../../services/menu.service';
 import { ActivatedRoute } from '@angular/router';
 import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
+import { CurrencyService } from '../../services/currency.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu-details',
@@ -27,17 +29,20 @@ export class MenuDetailsPage implements OnInit, OnViewWillEnter {
     image: String,
     itemQuantity: this.count
   };
+  selectedCurrency$: Observable<string>;
   savedCart = [];
   menuItem: any;
 
   constructor(public activatedRoute: ActivatedRoute,
               public alertCtrl: AlertController,
               public cartService: CartService,
+              public currencyService: CurrencyService,
               public menuService: MenuService) {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 10);
   }
 
   ionViewWillEnter() {
+    this.selectedCurrency$ = this.currencyService.selectedCurrency$;
     this.cartService.getCart();
     this.savedCart = this.cartService.cart;
   }
@@ -85,4 +90,6 @@ export class MenuDetailsPage implements OnInit, OnViewWillEnter {
       this.savedCart = this.cartService.cart;
     }
   }
+
+
 }

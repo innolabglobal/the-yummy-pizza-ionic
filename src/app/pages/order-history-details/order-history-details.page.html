@@ -3,7 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/order-history"></ion-back-button>
     </ion-buttons>
+
     <ion-title>{{ order?.order_number }}</ion-title>
+
+    <ion-buttons slot="end">
+      <app-currency-btn></app-currency-btn>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +18,7 @@
       <ion-grid>
         <ion-row>
           <ion-col>Total Amount:</ion-col>
-          <ion-col><b>{{ order?.grand_total | currency }}</b></ion-col>
+          <ion-col><b>{{ order?.grand_total | currencyConverter: ( selectedCurrency$ | async ) }}</b></ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Ordered At:</ion-col>
@@ -60,7 +65,7 @@
           <h3>
             <ion-row>
               <ion-col>Subtotal:</ion-col>
-              <ion-col><b>{{ item.price | currency}}</b></ion-col>
+              <ion-col><b>{{ item.price | currencyConverter: ( selectedCurrency$ | async )}}</b></ion-col>
               <ion-col>Quantity:</ion-col>
               <ion-col><b>{{ item.quantity }}</b></ion-col>
             </ion-row>

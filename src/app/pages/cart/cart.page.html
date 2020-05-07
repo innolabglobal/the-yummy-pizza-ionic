@@ -5,6 +5,10 @@
     </ion-buttons>
 
     <ion-title>Cart</ion-title>
+
+    <ion-buttons slot="end">
+      <app-currency-btn></app-currency-btn>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -38,7 +42,7 @@
                 <p class="item-detail ion-text-wrap">Quantity: {{ data.item.itemQuantity }}</p>
                 <p class="item-detail ion-text-wrap">Size: {{ data?.item?.price?.name }}</p>
                 <p class="item-detail">Price:
-                  <span class="item-price"> $ {{ data.item.price.value | number:'.2-2' }}</span>
+                  <span class="item-price"> {{ data.item.price.value | currencyConverter: ( selectedCurrency$ | async ) }}</span>
                 </p>
 
                 <ion-row class="counter">
@@ -66,19 +70,19 @@
       <ion-col class="calculate" size="12">
         <p class="bill-detail">
           Price Subtotal
-          <span>$ {{ subTotal | number:'.2-2' }}</span>
+          <span>{{ subTotal | currencyConverter:( selectedCurrency$ | async ) }}</span>
         </p>
 
         <p class="bill-detail">
           Total VAT({{ settings.totalVat  }}%)
-          <span>$ {{ total }}</span>
+          <span>{{ total | currencyConverter:( selectedCurrency$ | async ) }}</span>
         </p>
 
         <hr>
 
         <div class="cart-total">
           <strong>Order Total</strong>
-          <span class="price"> $ {{ GrandTotal | number:'.2-2' }}</span>
+          <span class="price">{{ GrandTotal | currencyConverter:( selectedCurrency$ | async ) }}</span>
         </div>
       </ion-col>
     </ion-row>

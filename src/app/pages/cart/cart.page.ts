@@ -3,6 +3,8 @@ import { AlertController, NavController } from '@ionic/angular';
 import { OnViewWillEnter } from '../../interfaces/ion-lifecycle.interface';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
+import { CurrencyService } from '../../services/currency.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -15,16 +17,19 @@ export class CartPage implements OnInit, OnViewWillEnter {
   settings: any = {};
   subTotal: any;
   GrandTotal: any;
+  selectedCurrency$: Observable<string>;
   total: any;
 
   constructor(public alertCtrl: AlertController,
               public authService: AuthService,
               public cartService: CartService,
+              public currencyService: CurrencyService,
               public navCtrl: NavController) {}
 
   ngOnInit(): void {}
 
   ionViewWillEnter() {
+    this.selectedCurrency$ = this.currencyService.selectedCurrency$;
     this.cartService.getCart();
     this.Cart = this.cartService.cart;
     this.recalculate();
@@ -81,7 +86,6 @@ export class CartPage implements OnInit, OnViewWillEnter {
   recalculate() {
     let subTotal = 0;
     const data = {
-      currency: { currencyName: 'USD', currencySymbol: '$' },
       totalVat: '10'
     };
     this.settings = data;

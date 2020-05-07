@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { OrderHistoryPageRoutingModule } from './order-history-routing.module';
 
 import { OrderHistoryPage } from './order-history.page';
+import { PipesModule } from '../../pipes/pipes.module';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OrderHistoryPageRoutingModule
+    OrderHistoryPageRoutingModule,
+    PipesModule,
+    ComponentsModule
   ],
   declarations: [OrderHistoryPage]
 })

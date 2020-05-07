@@ -2,6 +2,7 @@
   <ion-toolbar>
     <ion-title>Order History</ion-title>
     <ion-buttons *ngIf="isLoggedIn" slot="end">
+      <app-currency-btn></app-currency-btn>
       <ion-button (click)="onLogoutBtnClicked()">
         <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
       </ion-button>
@@ -19,7 +20,7 @@
       <ion-grid>
         <ion-row>
           <ion-col>Total Amount:</ion-col>
-          <ion-col><b>{{ order.grand_total | currency }}</b></ion-col>
+          <ion-col><b>{{ order.grand_total | currencyConverter: ( selectedCurrency$ | async ) }}</b></ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Ordered At:</ion-col>
