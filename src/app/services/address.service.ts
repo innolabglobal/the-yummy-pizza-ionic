@@ -49,21 +49,6 @@ const DUMMY_ADDRESS_LIST = [
   },
 ];
 
-const DUMMY_DELIVERABLE_POSTCODE = [
-  { post_code: 48346 },
-  { post_code: 56075 },
-  { post_code: 57401 },
-  { post_code: 57476 },
-  { post_code: 57146 },
-  { post_code: 57125 },
-  { post_code: 57480 },
-  { post_code: 57101 },
-  { post_code: 78900 },
-  { post_code: 57101 },
-  { post_code: 57475 },
-  { post_code: 67895 },
-];
-
 const LOCAL_ADDRESS_STORAGE_KEY = 'LOCAL_ADDRESS';
 
 @Injectable({
@@ -111,7 +96,9 @@ export class AddressService {
   }
 
   getDeliverablePostcode() {
-    return of(DUMMY_DELIVERABLE_POSTCODE);
+    return this.http
+      .get(`${environment.apiBaseUrl}/api/deliverable_post_codes`)
+      .pipe(map((res: ApiResponseInterface) => res.data));
   }
 
 }
