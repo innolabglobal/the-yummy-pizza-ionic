@@ -89,8 +89,8 @@ export class AddressService {
   }
 
   async getAllLocalAddresses() {
-    const result = JSON.parse(localStorage.getItem(LOCAL_ADDRESS_STORAGE_KEY));
-    result.concat(DUMMY_ADDRESS_LIST);
+    let result = JSON.parse(localStorage.getItem(LOCAL_ADDRESS_STORAGE_KEY));
+    result = result.concat(DUMMY_ADDRESS_LIST);
 
     return result ? result : [];
   }
