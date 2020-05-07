@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpCsrfInterceptor } from './services/http-csrf.interceptor';
 import { HttpErrorInterceptor } from './services/http-error.interceptor';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { HttpErrorInterceptor } from './services/http-error.interceptor';
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HttpClientModule,
+    OrderModule,
   ],
   providers: [
     StatusBar,
