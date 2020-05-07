@@ -21,6 +21,14 @@
                         class="link">
               {{ tab.label }}
             </ion-button>
+            <app-cart-btn></app-cart-btn>
+            <app-currency-btn></app-currency-btn>
+            <ion-button *ngIf="!isLoggedIn" fill="outline" color="light" routerLink="/login" routerDirection="root">
+              Login
+            </ion-button>
+            <ion-button *ngIf="isLoggedIn" fill="outline" color="light" (click)="onLogoutBtnClicked()">
+              Logout
+            </ion-button>
           </div>
         </ion-col>
       </ion-row>
@@ -28,10 +36,4 @@
   </ion-header>
 
   <ion-router-outlet class="desktop-wrapper"></ion-router-outlet>
-
-<!-- TODO: justify if there is better way to present footer -->
-<!--  <div class="footer ion-text-right ion-padding-horizontal">-->
-<!--    <span>The Yummy Pizza &copy;Copyright 2020</span>-->
-<!--  </div>-->
-
 </div>

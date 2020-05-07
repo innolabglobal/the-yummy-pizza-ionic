@@ -50,3 +50,18 @@ ion-button.badge-counter {
     z-index: 99;
   }
 }
+
+@media (min-width: 768px) {
+  .desktop-wrapper {
+    padding-bottom: 48px;
+
+    ion-content > .desktop-container {
+      width: 50vw;
+      margin: auto;
+    }
+  }
+}
+
+hr {
+  border-bottom: 1px solid #cccccc;
+}
