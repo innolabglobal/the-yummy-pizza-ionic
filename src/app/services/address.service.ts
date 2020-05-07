@@ -1,53 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { AddressInterface } from '../interfaces/address.interface';
 import { ApiResponseInterface } from '../interfaces/api-response.interface';
 import { AuthService } from './auth.service';
-
-const DUMMY_ADDRESS_LIST = [
-  {
-    id: 1,
-    user_id: 3,
-    address: 'Knesebeckstraße 75',
-    area: 'Schleswig-Holstein',
-    city: 'Witzhave',
-    country: 'Germany',
-    phone_number: '02532753469',
-    name: 'Parent Home',
-    post_code: '48345',
-    first_name: 'Nick',
-    last_name: 'Fury'
-  },
-  {
-    id: 2,
-    user_id: 3,
-    address: '1058  Mapleview Drive',
-    area: 'Schleswig-Holstein',
-    city: 'Münsterappel',
-    country: 'Germany',
-    phone_number: '02532753469',
-    name: 'Home',
-    post_code: '80333',
-    first_name: 'Peter',
-    last_name: 'Parker'
-  },
-  {
-    id: 3,
-    user_id: 3,
-    address: '4535  Larry Street',
-    area: 'Schleswig-Holstein',
-    city: 'Ostbevern',
-    country: 'Germany',
-    phone_number: '02532753469',
-    name: 'Work',
-    post_code: '48344',
-    first_name: 'Sharon',
-    last_name: 'Carter'
-  },
-];
 
 const LOCAL_ADDRESS_STORAGE_KEY = 'LOCAL_ADDRESS';
 
@@ -89,8 +47,7 @@ export class AddressService {
   }
 
   async getAllLocalAddresses() {
-    let result = JSON.parse(localStorage.getItem(LOCAL_ADDRESS_STORAGE_KEY)) || [];
-    result = result.concat(DUMMY_ADDRESS_LIST);
+    const result = JSON.parse(localStorage.getItem(LOCAL_ADDRESS_STORAGE_KEY));
 
     return result ? result : [];
   }
