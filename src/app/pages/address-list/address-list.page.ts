@@ -71,7 +71,7 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
 
   async checkOut() {
     this.orderDetails.orderView = false;
-    this.orderDetails.finalTotal = this.orderDetails.subTotal + this.orderDetails.totalVat + this.orderDetails.delivery_fees;
+    this.orderDetails.finalTotal = Number(this.orderDetails.subTotal) + Number(this.orderDetails.totalVat) + Number(this.orderDetails.delivery_fees);
 
     if (this.orderDetails.shippingAddress && this.postcodeMatched) {
       await this.navCtrl.navigateForward('/tabs/checkout', { queryParams: this.orderDetails });
