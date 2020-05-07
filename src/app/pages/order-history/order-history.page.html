@@ -11,27 +11,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let order of orders">
-    <ion-card-header>
-      <ion-card-subtitle>Order ID: {{ order.order_number }}</ion-card-subtitle>
-    </ion-card-header>
+  <div class="desktop-container">
 
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col>Total Amount:</ion-col>
-          <ion-col><b>{{ order.grand_total | currencyConverter: ( selectedCurrency$ | async ) }}</b></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>Ordered At:</ion-col>
-          <ion-col>{{ order.created_at | date: 'medium' }}</ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>Status:</ion-col>
-          <ion-col class="ion-text-capitalize"><b>{{ order.status }}</b></ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-button expand="block" fill="outline" [routerLink]="['/tabs/order-history', order.id]">View Details</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngFor="let order of orders">
+      <ion-card-header>
+        <ion-card-subtitle>Order ID: {{ order.order_number }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Total Amount:</ion-col>
+            <ion-col><b>{{ order.grand_total | currencyConverter: (selectedCurrency$ | async) }}</b></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Ordered At:</ion-col>
+            <ion-col>{{ order.created_at | date: 'medium' }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Status:</ion-col>
+            <ion-col class="ion-text-capitalize"><b>{{ order.status }}</b></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-button expand="block" fill="outline" [routerLink]="['/tabs/order-history', order.id]">View Details</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 </ion-content>

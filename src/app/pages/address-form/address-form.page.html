@@ -9,46 +9,50 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <form (ngSubmit)="addAddress()" #f="ngForm" class="ion-padding">
-      <ion-item>
-        <ion-input type="text" placeholder="Address Name *" name="name" id="name"
-                   [(ngModel)]="address.name" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" placeholder="First Name *" name="first_name" id="first_name"
-                   [(ngModel)]="address.first_name" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" placeholder="Last Name *" name="last_name" id="last_name"
-                   [(ngModel)]="address.last_name" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" placeholder="City *" name="city" id="city"
-                   [(ngModel)]="address.city" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="number" placeholder="Postcode *" name="postcode" id="postcode"
-                   [(ngModel)]="address.post_code" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" name="country" id="country" placeholder="Country" disabled
-                   [(ngModel)]="address.country"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="number" placeholder="Phone Number *" name="phone_number" id="phone_number"
-                   [(ngModel)]="address.phone_number" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-textarea rows="6" placeholder="Address *" name="address" id="address"
-                      [(ngModel)]="address.address" required></ion-textarea>
-      </ion-item>
+  <div class="desktop-container">
 
-      <ion-button class="ion-margin" type="Submit" expand="block" [disabled]="!f.valid">
-        <ion-icon name="add" slot="start"></ion-icon>
-        Add Address
-      </ion-button>
+    <ion-list>
+      <form (ngSubmit)="addAddress()" #f="ngForm" class="ion-padding">
+        <ion-item>
+          <ion-input type="text" placeholder="Address Name *" name="name" id="name"
+                     [(ngModel)]="address.name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="First Name *" name="first_name" id="first_name"
+                     [(ngModel)]="address.first_name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Last Name *" name="last_name" id="last_name"
+                     [(ngModel)]="address.last_name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="City *" name="city" id="city"
+                     [(ngModel)]="address.city" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" placeholder="Postcode *" name="postcode" id="postcode"
+                     [(ngModel)]="address.post_code" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" name="country" id="country" placeholder="Country" disabled
+                     [(ngModel)]="address.country"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" placeholder="Phone Number *" name="phone_number" id="phone_number"
+                     [(ngModel)]="address.phone_number" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea rows="6" placeholder="Address *" name="address" id="address"
+                        [(ngModel)]="address.address" required></ion-textarea>
+        </ion-item>
 
-    </form>
-  </ion-list>
+        <ion-button class="ion-margin" type="Submit" expand="block" [disabled]="!f.valid">
+          <ion-icon name="add" slot="start"></ion-icon>
+          Add Address
+        </ion-button>
+
+      </form>
+    </ion-list>
+
+  </div>
 </ion-content>
