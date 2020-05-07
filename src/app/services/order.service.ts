@@ -5,13 +5,15 @@ import { map } from 'rxjs/operators';
 import { ApiResponseInterface } from '../interfaces/api-response.interface';
 import { Observable } from 'rxjs';
 import { OrderInterface } from '../interfaces/order.interface';
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private orderPipe: OrderPipe,) { }
 
   getOrder(id): Observable<OrderInterface> {
     return this.http
@@ -22,6 +24,6 @@ export class OrderService {
   getOrders(): Observable<OrderInterface[]> {
     return this.http
       .get(`${environment.apiBaseUrl}/api/own/orders`)
-      .pipe(map((res: ApiResponseInterface) => res.data));
+      .pipe(map((res: ApiResponseInterface) => this.orderPipe.transform(res.data, 'created_at', true)));
   }
 }
