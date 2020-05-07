@@ -10,11 +10,33 @@
 
 <ion-content>
   <div class="desktop-container">
+    <ion-grid class="ion-padding">
+      <ion-row>
+        <ion-col>Sub Total:</ion-col>
+        <ion-col class="ion-text-right">{{ order.subTotal | currency }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>VAT Total:</ion-col>
+        <ion-col class="ion-text-right">{{ order.totalVat | currency }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Delivery Fees:</ion-col>
+        <ion-col class="ion-text-right">{{ order.delivery_fees | currency }}</ion-col>
+      </ion-row>
+      <hr>
+      <ion-row>
+        <ion-col><b>Final Total:</b></ion-col>
+        <ion-col class="ion-text-right"><b>{{ order.finalTotal | currency }}</b></ion-col>
+      </ion-row>
+      <hr>
+    </ion-grid>
+
+
     <ion-list lines="full">
+      <ion-list-header>
+        <ion-label>Payment Options</ion-label>
+      </ion-list-header>
       <ion-radio-group (ionChange)="choosePaymentType($event)">
-        <ion-list-header>
-          <ion-label>Payment Options</ion-label>
-        </ion-list-header>
         <ion-item *ngFor="let payment of paymentTypes">
           <ion-label>{{ payment.type }}</ion-label>
           <ion-radio slot="start" color="primary" [value]="payment.type"></ion-radio>

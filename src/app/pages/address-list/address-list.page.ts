@@ -62,14 +62,16 @@ export class AddressListPage implements OnInit, OnViewWillEnter {
     this.orderDetails = Object.assign(this.orderDetails, address);
 
     this.deliverablePostcodes.forEach(item => {
-      if (item.post_code === Number(address.post_code)) {
+      if (Number(item.post_code) === Number(address.post_code)) {
         this.postcodeMatched = true;
+        this.orderDetails.delivery_fees = item.delivery_fees;
       }
     });
   }
 
   async checkOut() {
     this.orderDetails.orderView = false;
+    this.orderDetails.finalTotal = this.orderDetails.subTotal + this.orderDetails.totalVat + this.orderDetails.delivery_fees;
 
     if (this.orderDetails.shippingAddress && this.postcodeMatched) {
       await this.navCtrl.navigateForward('/tabs/checkout', { queryParams: this.orderDetails });
