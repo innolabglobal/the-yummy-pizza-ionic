@@ -30,7 +30,7 @@ const DUMMY_ADDRESS_LIST = [
     country: 'Germany',
     phone_number: '02532753469',
     name: 'Home',
-    post_code: '48346',
+    post_code: '80333',
     first_name: 'Peter',
     last_name: 'Parker'
   },
