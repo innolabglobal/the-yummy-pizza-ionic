@@ -36,6 +36,11 @@ export class HttpLoadingInterceptor implements HttpInterceptor {
   }
 
   async presentLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+      this.loading = undefined;
+    }
+
     this.loading = await this.loadingCtrl.create({
       message: 'Loading...'
     });
