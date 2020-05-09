@@ -10,3 +10,13 @@ ion-slides {
     }
   }
 }
+
+.ps-note {
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+  z-index: 999;
+  color: #fff;
+  text-align: right;
+  max-width: 80vw;
+}
