@@ -1,65 +1,32 @@
 import { Injectable } from '@angular/core';
 import {
-  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse,
-  HttpErrorResponse
+  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { finalize, switchMap, tap } from 'rxjs/operators';
 import { LoadingController } from '@ionic/angular';
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class HttpLoadingInterceptor implements HttpInterceptor {
 
-  loading;
-
   constructor(private authService: AuthService,
               private loadingCtrl: LoadingController) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.presentLoading();
+    return from(this.loadingCtrl.create())
+      .pipe(
+        tap((loading) => {
+          return loading.present();
+        }),
+        switchMap((loading) => {
+          return next.handle(request).pipe(
+            finalize(() => {
+              loading.dismiss();
+            })
+          );
+        })
+      );
 
-    return next.handle(request).pipe(
-      map((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          console.log('event--->>>', event);
-        }
-
-        this.hideLoader();
-        return event;
-      }),
-      catchError((error: HttpErrorResponse) => {
-        console.error(error);
-        this.hideLoader();
-        return throwError(error);
-      }));
-  }
-
-  async presentLoading() {
-    if (this.loading) {
-      await this.loading.dismiss();
-      this.loading = undefined;
-    }
-
-    this.loading = await this.loadingCtrl.create({
-      message: 'Loading...'
-    });
-
-    this.loading.onDidDismiss().then((dis) => {
-      console.log('Loading dismissed!');
-    });
-
-    await this.loading.present();
-
-  }
-
-  async hideLoader() {
-    // TODO: there could be better logic for this
-    const interval = setInterval(async () => {
-      if (this.loading) {
-        await this.loading.dismiss();
-        clearInterval(interval);
-      }
-    }, 500);
   }
 }
