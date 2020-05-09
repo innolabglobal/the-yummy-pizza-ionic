@@ -14,7 +14,10 @@ export class HttpLoadingInterceptor implements HttpInterceptor {
               private loadingCtrl: LoadingController) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return from(this.loadingCtrl.create())
+    return from(this.loadingCtrl.create({
+      message: 'loading...',
+      duration: 10000,
+    }))
       .pipe(
         tap((loading) => {
           return loading.present();
