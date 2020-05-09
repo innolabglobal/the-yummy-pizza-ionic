@@ -15,6 +15,7 @@ import { HttpCsrfInterceptor } from './services/http-csrf.interceptor';
 import { HttpErrorInterceptor } from './services/http-error.interceptor';
 import { OrderModule } from 'ngx-order-pipe';
 import { CurrencyPipe } from '@angular/common';
+import { HttpLoadingInterceptor } from './services/http-loading.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { CurrencyPipe } from '@angular/common';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HttpCsrfInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpLoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     CurrencyPipe
   ],
